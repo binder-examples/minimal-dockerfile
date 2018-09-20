@@ -1,5 +1,7 @@
 # Minimal Dockerfiles for Binder
 
+[![Binder](https://mybinder.org/badge.svg)](https://mybinder.org/v2/gh/binder-examples/minimal-dockerfile/master)
+
 Binder needs only one thing to work:
 
 - to be able to launch `jupyter notebook` as a specified user (passed via docker build args as NB_UID/NB_USER)
@@ -19,10 +21,12 @@ The absolute bare minimum for this is to set HOME to `/tmp` so that it's writabl
 which would make the shortest, smallest dockerfile:
 
 ```docker
-FROM python:3.6-alpine
+FROM python:3.7-slim
 RUN pip install --no-cache notebook
 ENV HOME=/tmp
 ```
+
+which you can try out: [![Binder](https://mybinder.org/badge.svg)](https://mybinder.org/v2/gh/binder-examples/minimal-dockerfile/truly-minimal)
 
 However, it would be better to consume the NB_UID/NB_USER arguments and create a real user:
 
