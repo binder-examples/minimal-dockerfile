@@ -2,7 +2,7 @@
 
 [![Binder](https://mybinder.org/badge.svg)](https://mybinder.org/v2/gh/binder-examples/minimal-dockerfile/master)
 
-Binder needs only one thing to work:
+[Binder](https://mybinder.org) needs only one thing for images to work:
 
 - to be able to launch `jupyter notebook` as a specified user (passed via docker build args as NB_UID/NB_USER)
 
@@ -14,11 +14,11 @@ RUN pip install --no-cache notebook
 
 That's *almost* everything.
 
-The remaining pieces is that the specified user must be able to *start* the notebook,
+The remaining piece is that the specified user must be able to *start* the notebook,
 which requires certain permissions like being able to write to the home directory.
 
 The absolute bare minimum for this is to set HOME to `/tmp` so that it's writable,
-which would make the shortest, smallest dockerfile:
+which would make the shortest, smallest Dockerfile that works on Binder:
 
 ```docker
 FROM python:3.7-slim
@@ -43,3 +43,5 @@ RUN adduser --disabled-password \
     ${NB_USER}
 WORKDIR ${HOME}
 ```
+
+From this point, you can start adding files, installing packages, etc.
