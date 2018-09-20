@@ -9,7 +9,7 @@ Binder needs only one thing to work:
 What this means in practice is that the `notebook` package must be installed and on PATH:
 
 ```docker
-RUN pip install notebook
+RUN pip install --no-cache notebook
 ```
 
 That's *almost* everything.
